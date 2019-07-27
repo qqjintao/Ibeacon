@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">  
+    
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/' >  
+    <!-- level: 是日志记录的优先级，分为OFF、FATAL、ERROR、WARN、INFO、DEBUG、ALL -->
+    
+    <!-- 输出日志到控制台  ConsoleAppender -->  
+    <appender name="myConsole" class="org.apache.log4j.ConsoleAppender">  
+        <layout class="org.apache.log4j.PatternLayout">  
+            <param name="ConversionPattern"    
+                value="[%d{dd HH:mm:ss,SSS\} %-5p] [%t] %c{2\} - %m%n" />  
+        </layout>  
+        <!--过滤器设置输出的级别-->  
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">  
+            <param name="levelMin" value="debug" />  
+            <param name="levelMax" value="error" />  
+            <param name="AcceptOnMatch" value="true" />  
+        </filter>  
+   </appender> 
+    
+    <!-- 输出日志到文件  每天一个文件 -->  
+    <appender name="myError" class="org.apache.log4j.DailyRollingFileAppender">    
+        <!-- 设置日志输出文件名 -->  
+        <param name="File" value="D:/log/error.log" />
+        <!-- 设置是否在重新启动服务时，在原有日志的基础添加新日志 -->  
+        <param name="Append" value="true" />  
+        <!-- 每天 -->
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/> 
+        <layout class="org.apache.log4j.PatternLayout">  
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] - %p (%c:%L)- %m%n" />  
+        </layout>
+        <!--过滤器设置输出的级别-->  
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">  
+            <param name="levelMin" value="warn" />  
+            <param name="levelMax" value="error" />  
+            <param name="AcceptOnMatch" value="true" />  
+        </filter>
+    </appender>
+    
+    <!-- 输出日志到文件 -->  
+     <appender name="file" class="org.apache.log4j.DailyRollingFileAppender">
+       <param name="File" value="D:/log/debug.log"/>
+        <!-- 设置是否在重新启动服务时，在原有日志的基础添加新日志 -->  
+        <param name="Append" value="true" />  
+        <!-- 每天 -->
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/> 
+        <layout class="org.apache.log4j.PatternLayout">  
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] - %p (%c:%L)- %m%n" />  
+        </layout>
+        <!--过滤器设置输出的级别-->  
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">  
+            <param name="levelMin" value="debug" />  
+            <param name="levelMax" value="debug" />  
+            <param name="AcceptOnMatch" value="true" /> 
+        </filter>    
+     </appender> 
+    
+    <!-- 输出日志到文件  文件大小到达指定尺寸的时候产生一个新的文件 -->  
+    <appender name="admin" class="org.apache.log4j.RollingFileAppender">    
+        <!-- 设置日志输出文件名 -->  
+        <param name="File" value="D:/log/admin.log" />
+        <!-- 设置是否在重新启动服务时，在原有日志的基础添加新日志 -->  
+        <param name="Append" value="true" />  
+        <!-- 后缀可以是KB, MB 或者是 GB. 在日志文件到达该大小时，将会自动滚动，即将原来的内容移到.log.1文件 -->
+        <param name="MaxFileSize" value="20MB" />
+        <!-- 指定可以产生的滚动文件的最大数 -->
+        <param name="MaxBackupIndex" value="100" />
+        <layout class="org.apache.log4j.PatternLayout">  
+            <param name="ConversionPattern" value="[%d{MM-dd HH:mm:ss}] - %p (%c:%L)- %m%n" />  
+        </layout>
+        <!--过滤器设置输出的级别-->  
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">  
+            <param name="levelMin" value="debug" />  
+            <param name="levelMax" value="info" />  
+            <param name="AcceptOnMatch" value="true" />  
+        </filter>    
+    </appender>
+   
+    
+    <!-- 对指定的类路径进行等级过滤，以下设置是，对这些类路径指打印错误信息，不打印其他信息 -->
+    <category name="org.springframework"><priority value="error"/><appender-ref ref="file"/></category>
+    <category name="org.hibernate"><priority value="error"/><appender-ref ref="file"/></category>
+    <category name="com.mchange.v2"><priority value="error"/><appender-ref ref="file"/></category>
+    <category name="org.apache.commons"><priority value="error"/><appender-ref ref="file"/></category>
+    <category name="com.ibeacon.EnumConverter"><priority value="error"/><appender-ref ref="file"/></category>
+    <category name="org.apache.shiro"><priority value="error"/><appender-ref ref="file"/></category>
+    
+    <!-- 指定logger的设置，additivity指示是否遵循缺省的继承机制-->  
+    <logger name="com.ibeacon.controller" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="admin" />   
+    </logger>
+ 
+    
+    <!-- 根logger的设置-->
+    <root>  
+        <priority value ="debug"/>          
+        <appender-ref ref="myError"/>       
+        <!-- <appender-ref ref="file"/> -->
+    </root>  
+</log4j:configuration>  

@@ -1,0 +1,61 @@
+li {
+	color: chocolate;
+	font-size: 15px;
+}
+
+.focus {
+	background-color: #0000ff;
+	color: #80ffff;
+}
+
+.fade {
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 99;
+	display: none;
+}
+
+
+/*弹出层*/
+
+.succ-pop {
+	width: 90%;
+	height: 200px;
+	background: #fff;
+	position: fixed;
+	left: 20%;
+	top: 50%;
+	margin-left: -200px;
+	margin-top: -150px;
+	z-index: 999;
+	border-radius: 5px;
+}
+
+table {
+	font-family: verdana, arial, sans-serif;
+	font-size: 11px;
+	color: #333333;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+}
+
+th {
+	background: #b5cfd2 url('../img/cell-blue.jpg');
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #999999;
+}
+
+td {
+	background: #dcddc0 url('../img/cell-grey.jpg');
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #999999;
+}

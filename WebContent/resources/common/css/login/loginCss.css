@@ -1,0 +1,48 @@
+body {
+	background-image: url('../../images/LoginBg.jpg');
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+/*登录框设置*/
+.lg-container {
+	width: 500px;
+	margin: 100px auto;
+	padding: 20px 40px;
+	border: 1px solid #f4f4f4;
+	background: rgba(255, 255, 255, .5);
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 0 2px #aaa;
+	-moz-box-shadow: 0 0 2px #aaa;
+	box-shadow: 0 0 2px #aaa;
+}
+
+.lg-container h1 {
+	font-family: "新宋体";
+	font-size: 40px;
+	text-align: center;
+}
+
+.other_text {
+	border-bottom: 1px solid #B4BCCC;
+	height: 14px;
+	line-height: 30px;
+}
+
+.other_text span {
+	color: #333333;
+	display: block;
+	width: 140px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.other {
+	text-align: center;
+	color: #5A5E66;
+}
+
+.mt15 {
+	margin-top: 15px;
+}
